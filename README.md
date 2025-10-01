@@ -8,8 +8,8 @@ TrackMyCareer-AI is an AI-powered job tracking system that helps students and pr
 
 | SID      | Name          |
 |----------|---------------|
-| 23106021 | Paarth        |
-| 23106035 | Vivek         |
+| 23106021 | Paarth Sethi  |
+| 23106035 | Vivek Chaubey |
 | 23106047 | Daksh Kothari |
 | 23106052 | Kunal         |
 
