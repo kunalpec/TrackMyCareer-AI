@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --accent-color: #38903c; /* Reverting to your preferred green accent */
+  --font-size: 16px;
+  --padding: 20px;
+  --font-weight: 500;
+  --font: 'Montserrat';
+}
+
+/* --- Header Container --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: var(--secondary-color);
+  padding: 0 var(--padding);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: var(--font), sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- Logo --- */
+.Logo img {
+  max-width: 250px; 
+  height: 55px;
+  display: block;
+  object-fit: contain;
+}
+
+/* --- Navigation Layout --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 40px; /* Adjusted gap for clean visual spacing */
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  margin-right: 50px; 
+}
+
+.userSection {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 15px;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  margin-right: 10px; 
+}
+
+/* --- NavLink Styling (New and Corrected) --- */
+
+/* Base style for all NavLink components */
+.navItem {
+  cursor: pointer;
+  color: var(--primary-color); 
+  text-decoration: none; /* Removes underline */
+  padding: 5px 0; 
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  font-weight: 600; /* Applied directly to the NavLink */
+  display: block; /* Important for padding and border */
+}
+
+/* Hover Effect */
+.navItem:hover {
+  color: var(--accent-color);
+}
+
+/* Active State Styling */
+.active {
+  color: var(--accent-color); /* Highlight color when active */
+  /* Optional: Add a subtle bottom border for the active link */
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 3px; /* Adjust padding to make space for the border */
+}
+
+/* Removing unnecessary styling from the <li> tags, as styling is now on the NavLink */
+.navLinks li,
+.userSection li {
+  /* Only keep the list-item structure */
+  padding: 0; 
+  margin: 0;
+}
+
+/* --- User Icon --- */
+.userIconContainer {
+  /* Ensure cursor pointer is still active on the container */
+  cursor: pointer; 
+}
+
+.userIcon {
+  font-size: 28px; 
+  color: #a0a0a0;
+  display: block; 
+  transition: color 0.3s ease;
+}
+
+.userIconContainer:hover .userIcon {
+  color: var(--accent-color); 
+}
