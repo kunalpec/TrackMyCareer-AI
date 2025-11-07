@@ -1,6 +1,8 @@
-const Blog=()=>{
+const Blog = () => {
   return(
-    <div>Blog</div>
+    <div className="Blog">
+      Work in Progress! 🎉
+    </div>
   );
 }
 export default Blog;

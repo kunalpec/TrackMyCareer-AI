@@ -1,0 +1,74 @@
+/* Contact.module.css */
+.contactInfoList {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+.contactInfoList h2 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.contactDescription {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.contactItem {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #38903c;
+}
+
+.contactCategory {
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #000000;
+}
+
+.generalInquiries {
+  color: #38903c;
+  font-weight: 700;
+}
+
+.contactEmail {
+  font-weight: 600;
+  margin-top: 10px;
+  color: #000000;
+}
+
+.emailLink {
+  color: #38903c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contactInfoList {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  
+  .contactInfoList h2 {
+    font-size: 1.8em;
+  }
+  
+  .contactCategory {
+    font-size: 1.1em;
+  }
+  
+  .contactDescription {
+    font-size: 0.9em;
+  }
+}
