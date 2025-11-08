@@ -24,6 +24,26 @@ const HeaderComp = () => {
           </li>
           <li>
             <NavLink
+              to="/providejobs"
+              className={({ isActive }) =>
+                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+              }
+            >
+              ProvideJobs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/applyjobs"
+              className={({ isActive }) =>
+                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+              }
+            >
+              FindJobs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/about"
               className={({ isActive }) =>
                 isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
@@ -40,16 +60,6 @@ const HeaderComp = () => {
               }
             >
               Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
-              }
-            >
-              Blog
             </NavLink>
           </li>
         </ul>
