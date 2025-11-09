@@ -1,0 +1,80 @@
+/* --- ApplicationCard Styles --- */
+.jobCard {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 300px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  /* Make all cards the same height */
+  height: 400px; /* adjust this as needed */
+  box-sizing: border-box;
+}
+
+/* --- Company Logo / Image --- */
+.companyLogoPlaceholder,
+.companyLogo {
+  width: 100%;
+  height: 180px; /* fixed height for consistency */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* ensures image does not overflow container */
+}
+
+.companyLogoPlaceholder {
+  background-color: #f0f0f0;
+}
+
+.companyLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures image fills container without stretching */
+  background-color: #fff; /* for transparent logos */
+}
+
+/* --- Text Styles --- */
+.jobTitle {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+  line-height: 1.0;
+}
+
+.companyName {
+  font-size: 0.9em;
+  color: #555555;
+  margin: 0;
+}
+
+.jobDetails {
+  font-size: 0.85em;
+  color: #777777;
+  margin: 0;
+}
+
+/* --- Button --- */
+.applyNowBtn {
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: auto; /* pushes button to bottom if space remains */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.applyNowBtn:hover {
+  background-color: #218838;
+}

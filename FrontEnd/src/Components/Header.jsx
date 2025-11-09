@@ -29,7 +29,7 @@ const HeaderComp = () => {
                 isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
               }
             >
-              ProvideJobs
+              PostJobs
             </NavLink>
           </li>
           <li>
