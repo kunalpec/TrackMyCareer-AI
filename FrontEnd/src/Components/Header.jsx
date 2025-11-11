@@ -65,16 +65,6 @@ const HeaderComp = () => {
         </ul>
 
         <ul className={styles.userSection}>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
-              }
-            >
-              Login
-            </NavLink>
-          </li>
           <li className={styles.userIconContainer}>
             <FaCircleUser className={styles.userIcon} />
           </li>

@@ -10,7 +10,7 @@
 :root {
   --primary-color: #000000;
   --secondary-color: #ffffff;
-  --accent-color: #38903c; /* Reverting to your preferred green accent */
+  --accent-color: #38903c;
   --font-size: 16px;
   --padding: 20px;
   --font-weight: 500;
@@ -35,7 +35,7 @@
 
 /* --- Logo --- */
 .Logo img {
-  max-width: 250px; 
+  max-width: 250px;
   height: 55px;
   display: block;
   object-fit: contain;
@@ -51,10 +51,10 @@
 .navLinks {
   display: flex;
   list-style: none;
-  gap: 40px; /* Adjusted gap for clean visual spacing */
+  gap: 40px;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
-  margin-right: 50px; 
+  margin-right: 50px;
 }
 
 .userSection {
@@ -64,56 +64,136 @@
   gap: 15px;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
-/* --- NavLink Styling (New and Corrected) --- */
-
-/* Base style for all NavLink components */
+/* --- NavLink Styling --- */
 .navItem {
   cursor: pointer;
-  color: var(--primary-color); 
-  text-decoration: none; /* Removes underline */
-  padding: 5px 0; 
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 5px 0;
   transition: color 0.3s ease, border-bottom 0.3s ease;
-  font-weight: 600; /* Applied directly to the NavLink */
-  display: block; /* Important for padding and border */
+  font-weight: 600;
+  display: block;
 }
 
-/* Hover Effect */
 .navItem:hover {
   color: var(--accent-color);
 }
 
-/* Active State Styling */
 .active {
-  color: var(--accent-color); /* Highlight color when active */
-  /* Optional: Add a subtle bottom border for the active link */
+  color: var(--accent-color);
   border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 3px; /* Adjust padding to make space for the border */
+  padding-bottom: 3px;
 }
 
-/* Removing unnecessary styling from the <li> tags, as styling is now on the NavLink */
 .navLinks li,
 .userSection li {
-  /* Only keep the list-item structure */
-  padding: 0; 
+  padding: 0;
   margin: 0;
 }
 
 /* --- User Icon --- */
 .userIconContainer {
-  /* Ensure cursor pointer is still active on the container */
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .userIcon {
-  font-size: 28px; 
+  font-size: 28px;
   color: #a0a0a0;
-  display: block; 
+  display: block;
   transition: color 0.3s ease;
 }
 
 .userIconContainer:hover .userIcon {
-  color: var(--accent-color); 
+  color: var(--accent-color);
+}
+
+/* ===========================
+   📱 RESPONSIVE DESIGN
+=========================== */
+
+/* --- Tablets (≤ 1024px) --- */
+@media (max-width: 1024px) {
+  .navbar {
+    gap: 30px;
+  }
+
+  .navLinks {
+    gap: 25px;
+    margin-right: 20px;
+  }
+
+  .Logo img {
+    max-width: 180px;
+    height: 45px;
+  }
+
+  .userIcon {
+    font-size: 24px;
+  }
+}
+
+/* --- Small Tablets & Large Phones (≤ 768px) --- */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+    align-items: flex-start;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .navItem {
+    font-size: 0.95rem;
+    padding: 8px 0;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .userSection {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .Logo img {
+    max-width: 160px;
+    height: 40px;
+  }
+}
+
+/* --- Mobile Phones (≤ 480px) --- */
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+  }
+
+  .Logo img {
+    max-width: 130px;
+    height: 35px;
+  }
+
+  .navItem {
+    font-size: 0.9rem;
+  }
+
+  .userIcon {
+    font-size: 22px;
+  }
 }

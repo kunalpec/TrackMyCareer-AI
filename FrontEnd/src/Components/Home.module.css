@@ -1,29 +1,42 @@
+/* ===============================
+   Global Variables
+=============================== */
 :root {
-  --backbody: #b5e6a3; /* Light green background color */
+  --primary-green: #28a745;
+  --primary-blue: #007bff;
+  --dark-blue: #0069d9;
+  --dark-green: #218838;
+  --light-green-bg: #b5e6a3;
+  --text-color: #333;
+  --text-muted: #555;
+  --border-color: #ddd;
+  --white: #fff;
+  --black: #000;
 }
 
-
-/* --- Global Container --- */
+/* ===============================
+   Global Container
+=============================== */
 .homeContainer {
   font-family: "Inter", Arial, sans-serif;
-  color: #333;
-  background-color: #ffffff;
+  color: var(--text-color);
+  background-color: var(--white);
   margin: 0;
   padding: 0;
 }
 
-/* --- Hero Section --- */
+/* ===============================
+   Hero Section
+=============================== */
 .heroSection {
   position: relative;
   height: 400px;
-  background-image: url("src/assets/hero-imag2.jpg");
-  background-size: cover;
-  background-position:top;
+  background: url("src/assets/hero-imag2.jpg") top/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 10%;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .heroContent {
@@ -33,9 +46,9 @@
 
 .heroHeading {
   font-size: 3em;
-  margin: 0;
-  line-height: 1.2;
   font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .heroButtons {
@@ -44,32 +57,37 @@
 
 .findJobBtn,
 .postJobBtn {
-  background-color: #28a745;
-  color: #ffffff;
+  display: inline-block;
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
-  margin-right: 12px;
   font-size: 1em;
   font-weight: 500;
-  transition: background-color 0.2s ease-in-out;
+  color: var(--white);
+  cursor: pointer;
+  margin-right: 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.findJobBtn {
+  background-color: var(--primary-green);
 }
 
 .findJobBtn:hover {
-  background-color: #218838;
+  background-color: var(--dark-green);
 }
 
 .postJobBtn {
-  background-color: #007bff;
+  background-color: var(--primary-blue);
 }
 
 .postJobBtn:hover {
-  background-color: #0069d9;
+  background-color: var(--dark-blue);
 }
 
-/* --- Find Your Dream Job Section --- */
-
+/* ===============================
+   "Find Your Dream Job" Section
+=============================== */
 .sectionTitle {
   font-size: 2em;
   font-weight: 600;
@@ -84,7 +102,7 @@
 .searchInput {
   width: 60%;
   padding: 12px 16px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 1em;
   outline: none;
@@ -92,7 +110,7 @@
 }
 
 .searchInput:focus {
-  border-color: #007bff;
+  border-color: var(--primary-blue);
 }
 
 .filterButtons {
@@ -103,27 +121,29 @@
   margin: 5px;
   padding: 8px 16px;
   border: 1px solid #ccc;
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 6px;
-  cursor: pointer;
   font-size: 0.9em;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .filterBtn:hover {
-  background-color: #007bff;
-  color: #ffffff;
-  border-color: #007bff;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--primary-blue);
 }
 
-/* --- Empower Your Team & Job Cards --- */
+/* ===============================
+   Empower Your Team & Job Cards
+=============================== */
 .mainContentArea {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   padding: 60px 10%;
   align-items: flex-start;
-  background-color: var(--backbody);
+  background-color: var(--light-green-bg);
 }
 
 .empowerTeamSection {
@@ -132,42 +152,46 @@
 }
 
 .empowerTeamText {
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #555;
 }
 
 .postJobNowBtn {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: var(--primary-blue);
+  color: var(--white);
   padding: 10px 22px;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
   font-size: 1em;
+  cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
 
 .postJobNowBtn:hover {
-  background-color: #0069d9;
+  background-color: var(--dark-blue);
 }
 
-/* --- Job Cards Grid --- */
+/* ===============================
+   Job Cards Grid
+=============================== */
 .jobCardsArea {
   flex: 2;
-  display:flex;
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 25px;
-  overflow-x: scroll;
+  overflow-x: auto;
   max-width: 600px;
-  transition: all  0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-/* --- Footer --- */
+/* ===============================
+   Footer
+=============================== */
 .footer {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--black);
+  color: var(--white);
   padding: 40px 10%;
   text-align: center;
 }
@@ -181,8 +205,8 @@
 }
 
 .footerLogo {
-  font-weight: 700;
   font-size: 1.3em;
+  font-weight: 700;
   letter-spacing: 0.5px;
 }
 
@@ -196,7 +220,7 @@
 
 .footerLink,
 .socialIcon {
-  color: #ffffff;
+  color: var(--white);
   text-decoration: none;
   font-size: 0.95em;
   transition: color 0.2s ease-in-out;
@@ -204,29 +228,123 @@
 
 .footerLink:hover,
 .socialIcon:hover {
-  color: #28a745;
+  color: var(--primary-green);
 }
 
-.scrollBtn{
+/* ===============================
+   Scroll Buttons
+=============================== */
+.scrollBtn {
   position: absolute;
   background-color: #9dd494;
-  padding:20px;
+  padding: 20px;
   border-radius: 50%;
-
-}
-.leftBtn{
-  bottom: -110px;
-  right:700px
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.rightBtn{
-  bottom:-110px;
-  right:100px;
+.scrollBtn:hover {
+  background-color: var(--primary-green);
 }
 
-.leftBtn:hover{
-  background-color: #28a745;
+.leftBtn {
+  bottom: -190px;
+  right:740px;
 }
-.rightBtn:hover{
-  background-color: #28a745;
+
+.rightBtn {
+  bottom: -190px;
+  right: 60px;
+}
+
+/* ===============================
+   ✅ Responsive Media Queries
+=============================== */
+
+/* Tablets (<= 992px) */
+@media (max-width: 992px) {
+  .heroSection {
+    height: 300px;
+    padding-left: 5%;
+  }
+
+  .heroHeading {
+    font-size: 2.3em;
+  }
+
+  .mainContentArea {
+    flex-direction: column;
+    padding: 40px 5%;
+    gap: 40px;
+  }
+
+  .jobCardsArea {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .empowerTeamSection {
+    padding-right: 0;
+  }
+}
+
+/* Mobile Landscape (<= 768px) */
+@media (max-width: 768px) {
+  .heroSection {
+    height: 250px;
+    padding-left: 5%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .heroHeading {
+    font-size: 2em;
+  }
+
+  .searchInput {
+    width: 90%;
+  }
+
+  .findJobBtn,
+  .postJobBtn {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+/* Mobile Portrait (<= 480px) */
+@media (max-width: 480px) {
+  .heroSection {
+    height: 200px;
+    padding-left: 0;
+    background-position: center;
+  }
+
+  .heroHeading {
+    font-size: 1.6em;
+  }
+
+  .mainContentArea {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 1.5em;
+  }
+
+  .filterBtn {
+    font-size: 0.8em;
+    padding: 6px 10px;
+  }
+
+  .scrollBtn {
+    padding: 12px;
+  }
 }
