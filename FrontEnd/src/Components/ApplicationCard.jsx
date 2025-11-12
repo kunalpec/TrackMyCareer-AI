@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ApplicationCard.module.css";
-
+import { Link } from "react-router-dom";
 const ApplyComp = ({ jobinfo }) => {
   const {
     Role = "Job Title Not Available",
@@ -25,7 +25,7 @@ const ApplyComp = ({ jobinfo }) => {
       <p className={styles.companyName}>{companyName}</p>
       <p className={styles.jobDetails}>{location}</p>
       <p className={styles.jobDetails}>Number of Applicants: {applicants}</p>
-      <button className={styles.applyNowBtn}>Apply Now</button>
+      <Link to="applyjobs" className={styles.applyNowBtn}>Apply Now</Link>
     </div>
   );
 };

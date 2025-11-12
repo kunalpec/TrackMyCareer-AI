@@ -55,3 +55,20 @@
 .button:hover {
   background-color: #218838;
 }
+
+.signupText {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+}
+
+.signupLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}

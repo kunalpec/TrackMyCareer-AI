@@ -1,0 +1,77 @@
+/* --- Container --- */
+.signupContainer {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+/* --- Title --- */
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #202124;
+}
+
+/* --- Form --- */
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputGroup label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.inputGroup input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* --- Signup Button --- */
+.signupBtn {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signupBtn:hover {
+  background-color: #0056b3;
+}
+
+/* --- Success Message --- */
+.successMsg {
+  margin-top: 12px;
+  color: #28a745;
+  font-weight: 500;
+  font-size: 14px;
+}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "./ApplyJobs.module.css";
 import { User, Users, ClipboardList } from "lucide-react";
-
-// Component Imports
-import ProfilePage from "./ProfilePage";
+// Pages
+import DefaultPage from "./DefaultPage";
+import ProfilePage from "./Profilepage";
 import ApplicationsPage from "./Applicationspage"; // ✅ fixed filename capitalization
-
+import JobTrackingPage from "./JobTrackingPage";
 // Dummy Track Component
 const Track = () => (
   <div className={styles.trackContainer}>
@@ -24,43 +24,6 @@ const stats = {
   rejected: 3,
 };
 
-// Default Page Component
-const DefaultPage = () => (
-  <div className={styles.defaultPageContainer}>
-    <h2 className={styles.welcomeTitle}>Welcome, Kunal! 👋</h2>
-    <p className={styles.welcomeSubtitle}>
-      Here’s a quick summary of your job application progress.
-    </p>
-
-    <div className={styles.statsGrid}>
-      <div className={styles.statCard}>
-        <h3>{stats.totalApplied}</h3>
-        <p>Total Applications</p>
-      </div>
-      <div className={styles.statCard}>
-        <h3>{stats.shortlisted}</h3>
-        <p>Shortlisted</p>
-      </div>
-      <div className={styles.statCard}>
-        <h3>{stats.interviews}</h3>
-        <p>Interview Calls</p>
-      </div>
-      <div className={styles.statCard}>
-        <h3>{stats.rejected}</h3>
-        <p>Rejected</p>
-      </div>
-    </div>
-
-    <div className={styles.tipSection}>
-      <h4>💡 Tip for You</h4>
-      <p>
-        Keep your resume updated and tailor your cover letters for each
-        application to stand out from the crowd!
-      </p>
-    </div>
-  </div>
-);
-
 // ===============================
 // Main Apply Component
 // ===============================
@@ -74,7 +37,7 @@ const ApplyComp = () => {
       case "applicants":
         return <ApplicationsPage />;
       case "track":
-        return <Track />;
+        return <JobTrackingPage />;
       case "status":
       default:
         return <DefaultPage />;

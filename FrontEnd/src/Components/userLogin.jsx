@@ -3,90 +3,85 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginAdmin.module.css";
 import { useAppContext } from "../Context/AppContext";
 
-const AdminLogin = () => {
-  // ✅ Access values from global AppContext
-  const { AdminformData, setAdminFormData, setAdminRef } = useAppContext();
+const UserLogin = () => {
+  const { UserformData, setUserFormData, setApplyUser, setUser } = useAppContext();
   const navigate = useNavigate();
 
-  // ✅ Handle input changes
+  // Handle input changes
   const handleChange = (e) => {
-    setAdminFormData({ ...AdminformData, [e.target.name]: e.target.value });
+    setUserFormData({ ...UserformData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Handle form submission
+  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate fields
-    if (AdminformData.email && AdminformData.password && AdminformData.name) {
-      console.log("✅ Admin Login Successful:", AdminformData);
+    if (UserformData.email && UserformData.password && UserformData.name) {
+      console.log("✅ User Login Successful:", UserformData);
 
-      // Set admin as logged in
-      setAdminRef(true);
+      // Save user globally
+      setUser({
+        name: UserformData.name,
+        email: UserformData.email,
+      });
 
-      // Redirect to job provider page
-      navigate("/providejobs");
+      // Set user as logged in
+      setApplyUser(true);
+
+      // Redirect to Apply Jobs page
+      navigate("/applyjobs");
     } else {
-      alert("⚠️ Please fill all details before logging in.");
+      alert("⚠️ Please fill all fields before logging in!");
     }
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Admin Login</h2>
+      <h2 className={styles.heading}>User Login</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* --- Name --- */}
+        {/* Full Name */}
         <label className={styles.label}>Full Name</label>
         <input
           type="text"
           name="name"
           placeholder="Enter your name"
-          value={AdminformData.name}
+          value={UserformData.name}
           onChange={handleChange}
           required
           className={styles.input}
         />
 
-        {/* --- Email --- */}
+        {/* Email */}
         <label className={styles.label}>Email</label>
         <input
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={AdminformData.email}
+          value={UserformData.email}
           onChange={handleChange}
           required
           className={styles.input}
         />
 
-        {/* --- Password --- */}
+        {/* Password */}
         <label className={styles.label}>Password</label>
         <input
           type="password"
           name="password"
           placeholder="Enter your password"
-          value={AdminformData.password}
+          value={UserformData.password}
           onChange={handleChange}
           required
           className={styles.input}
         />
 
-        {/* --- Submit Button --- */}
         <button type="submit" className={styles.button}>
           Login
         </button>
       </form>
-
-      {/* --- Signup Redirect --- */}
-      <p className={styles.signupText}>
-        Don't have an account?{" "}
-        <Link to="/admin-signup" className={styles.signupLink}>
-          Sign Up
-        </Link>
-      </p>
     </div>
   );
 };
 
-export default AdminLogin;
+export default UserLogin;

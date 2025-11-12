@@ -5,9 +5,9 @@ import image1 from "../assets/softwareperson.jpg";
 import image2 from "../assets/UX UI.jpg";
 import image3 from "../assets/Data Science.jpg";
 import image4 from "../assets/Data Science1.jpg";
-import image5 from "../assets/hero-image.jpg";
 // import image1 from "../assets/softwareperson.jpg";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const jobs = [
@@ -66,8 +66,13 @@ const Home = () => {
           <h1 className={styles.heroHeading}>Unlock Your Next</h1>
           <h1 className={styles.heroHeading}>Opportunity</h1>
           <div className={styles.heroButtons}>
-            <button className={styles.findJobBtn}>Find Jobs</button>
-            <button className={styles.postJobBtn}>Post Job</button>
+            <Link to="/applyjobs" className={styles.findJobBtn}>
+              Find Jobs
+            </Link>
+
+            <Link to="/providejobs" className={styles.postJobBtn}>
+              Post Job
+            </Link>
           </div>
         </div>
       </div>
@@ -80,7 +85,7 @@ const Home = () => {
             Connect with top talent. Post your job openings and find the perfect
             candidates quickly and efficiently.
           </p>
-          <button className={styles.postJobNowBtn}>Post a Job Now</button>
+          <Link to="/providejobs" className={styles.postJobNowBtn}>Post a Job Now</Link>
         </div>
 
         {/* Job Cards Carousel */}

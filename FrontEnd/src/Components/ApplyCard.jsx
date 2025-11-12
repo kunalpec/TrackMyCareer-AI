@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ApplicationsPage.module.css";
+import styles from "./ApplyCard.module.css";
 import { Briefcase, MapPin, Clock } from "lucide-react";
 
 const ApplyCard = ({ job, expandedJob, toggleExpand }) => {

@@ -1,56 +1,31 @@
 import React from "react";
-import { Briefcase, MapPin, DollarSign, Clock, User, CheckCircle, Mail, Phone, FileText, Building } from 'lucide-react';
+import {
+  Briefcase,
+  MapPin,
+  DollarSign,
+  Clock,
+  User,
+  CheckCircle,
+  FileText,
+  Building,
+  Calendar,
+} from "lucide-react";
 import styles from "./ProvideJobs.module.css";
 import JobPosted from "./JobPostedCard";
-import image4 from "../assets/softwareperson.jpg";
+import { useAppContext } from "../Context/AppContext";
 
 const ProvideComp = () => {
+  const { PostedJob } = useAppContext(); // ✅ Destructure properly
 
-  const Job1 = [{
-    role: "Frontend Developer",
-    company: "Google",
-    location: "Remote",
-    salary: "$90k - $120k",
-    experience: "2+ Years",
-    jobType: "Full-Time",
-    logo: image4 ,
-    description: "We’re looking for a skilled React developer to join our dynamic team.",
-  },{
-    role: "Frontend Developer",
-    company: "Google",
-    location: "Remote",
-    salary: "$90k - $120k",
-    experience: "2+ Years",
-    jobType: "Full-Time",
-    logo: image4,
-    description: "We’re looking for a skilled React developer to join our dynamic team.",
-  },{
-    role: "Frontend Developer",
-    company: "Google",
-    location: "Remote",
-    salary: "$90k - $120k",
-    experience: "2+ Years",
-    jobType: "Full-Time",
-    logo: image4 ,
-    description: "We’re looking for a skilled React developer to join our dynamic team.",
-  },{
-    role: "Frontend Developer",
-    company: "Google",
-    location: "Remote",
-    salary: "$90k - $120k",
-    experience: "2+ Years",
-    jobType: "Full-Time",
-    logo: image4 ,
-    description: "We’re looking for a skilled React developer to join our dynamic team.",
-  }];
   return (
     <div className={styles.PostContainer}>
       <div className={styles.Jobs}>
-
         {/* --- Job Post Form Section --- */}
         <div className={styles.JobPostArea}>
           <h2 className={styles.SectionTitle}>Create New Job Post</h2>
+
           <form className={styles.JobForm}>
+            {/* Job Role */}
             <div className={styles.FormField}>
               <label htmlFor="jobRole">Job Role *</label>
               <div className={styles.InputWithIcon}>
@@ -64,6 +39,7 @@ const ProvideComp = () => {
               </div>
             </div>
 
+            {/* Company Name */}
             <div className={styles.FormField}>
               <label htmlFor="company">Company</label>
               <div className={styles.InputWithIcon}>
@@ -72,6 +48,7 @@ const ProvideComp = () => {
               </div>
             </div>
 
+            {/* Location & Salary */}
             <div className={styles.RowFields}>
               <div className={styles.FormField}>
                 <label htmlFor="location">Location</label>
@@ -85,17 +62,26 @@ const ProvideComp = () => {
                 <label htmlFor="salaryRange">Salary Range</label>
                 <div className={styles.InputWithIcon}>
                   <DollarSign className={styles.Icon} size={18} />
-                  <input type="text" id="salaryRange" placeholder="$80k - $100k" />
+                  <input
+                    type="text"
+                    id="salaryRange"
+                    placeholder="$80k - $100k"
+                  />
                 </div>
               </div>
             </div>
 
+            {/* Experience & Job Type */}
             <div className={styles.RowFields}>
               <div className={styles.FormField}>
                 <label htmlFor="experience">Experience</label>
                 <div className={styles.InputWithIcon}>
                   <Clock className={styles.Icon} size={18} />
-                  <input type="text" id="experience" placeholder="e.g., 3+ Years" />
+                  <input
+                    type="text"
+                    id="experience"
+                    placeholder="e.g., 3+ Years"
+                  />
                 </div>
               </div>
 
@@ -113,6 +99,16 @@ const ProvideComp = () => {
               </div>
             </div>
 
+            {/* Last Date to Apply */}
+            <div className={styles.FormField}>
+              <label htmlFor="lastDate">Last Date to Apply *</label>
+              <div className={styles.InputWithIcon}>
+                <Calendar className={styles.Icon} size={18} />
+                <input type="date" id="lastDate" required />
+              </div>
+            </div>
+
+            {/* Job Description */}
             <div className={styles.FormField}>
               <label htmlFor="jobDescription">Job Description</label>
               <div className={styles.InputWithIcon}>
@@ -120,18 +116,15 @@ const ProvideComp = () => {
                 <textarea
                   id="jobDescription"
                   rows="5"
-                  placeholder="Provide a detailed description of the role responsibilities and requirements..."
+                  placeholder="Provide detailed role responsibilities and requirements..."
                 ></textarea>
               </div>
             </div>
 
+            {/* Company Logo Upload */}
             <div className={styles.FormField}>
-              <label htmlFor="companyLogoUrl">Company Image/Logo URL</label>
-              <input
-                type="text"
-                id="companyLogoUrl"
-                placeholder="https://placehold.co/100x100"
-              />
+              <label htmlFor="companyLogoFile">Company Image/Logo Upload</label>
+              <input type="file" id="companyLogoFile" accept="image/*" />
             </div>
 
             <button type="submit" className={styles.PostJobButton}>
@@ -144,10 +137,11 @@ const ProvideComp = () => {
         {/* --- Job Posted Section --- */}
         <div className={styles.JobPostedArea}>
           <h2 className={styles.SectionTitle}>Jobs Posted</h2>
-          <p>List of jobs will appear here...</p>
-          {Job1.map((item, index) => (
-            <JobPosted key={index} job={item} />
-          ))}
+          {PostedJob.length > 0 ? (
+            PostedJob.map((item, index) => <JobPosted key={index} job={item} />)
+          ) : (
+            <p>No jobs posted yet...</p>
+          )}
         </div>
       </div>
 

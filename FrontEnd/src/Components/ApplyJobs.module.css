@@ -124,7 +124,7 @@
   flex: 1;
   margin-left: var(--sidebar-width);
   padding: 30px;
-  background: var(--bg-light);
+  background: var(--primary-blue);
   overflow-y: auto;
 }
 
@@ -138,6 +138,7 @@
   padding: 32px;
   box-shadow: var(--shadow-sm);
   text-align: center;
+  height: 80vh;
 }
 
 .welcomeTitle {
@@ -162,11 +163,12 @@
 }
 
 .statCard {
-  background: var(--bg-light);
+  background: rgb(174, 209, 255);
   border-radius: var(--radius-md);
   padding: 20px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  margin-bottom: 30px;
 }
 
 .statCard:hover {
@@ -175,13 +177,14 @@
 }
 
 .statCard h3 {
-  color: var(--primary-blue);
+  color: rgb(0, 0, 0);
   font-size: 2rem;
   margin-bottom: 8px;
 }
 
 .statCard p {
   color: var(--text-muted);
+  color: rgb(0, 0, 0);
   font-size: 0.95rem;
 }
 

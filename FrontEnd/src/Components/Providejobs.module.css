@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 :root {
-  --primary-greenpage: #ffffff;
+  --primary-greenpage: #178fff;
   --primary-blue: #007bff;
   --dark-blue: #0069d9;
   --dark-green: #218838;
   --bg-light: #f8f9fa;
   --text-dark: #333;
   --text-muted: #555;
-  --border: #ddd;
+  --border: #000000;
   --white: #fff;
+  --deadline: #ff6b6b; /* 🔴 New subtle red accent for deadline field */
 }
 
 /* ===============================
@@ -30,7 +31,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
-  gap:10px
+  gap: 10px;
 }
 
 .JobPostArea {
@@ -38,8 +39,9 @@
   background-color: var(--white);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-sizing: content-box;
 }
 
 .JobPostedArea {
@@ -48,8 +50,8 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 30px;
-  box-shadow: inset 0 -6px 20px rgba(0, 0, 0, 0.30);
-  max-height: 900px;
+  box-shadow: inset 0 -6px 20px rgb(0, 0, 0);
+  max-height: 1000px;
   overflow-y: scroll;
 }
 
@@ -90,7 +92,7 @@
 .FormField select,
 .FormField textarea {
   padding: 14px 16px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 8px;
   font-size: 0.95rem;
   outline: none;
@@ -102,7 +104,6 @@
 .FormField select:focus,
 .FormField textarea:focus {
   border-color: var(--primary-blue);
-  /* box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1); */
 }
 
 /* ===============================
@@ -169,6 +170,23 @@
   appearance: none;
   background: transparent;
   cursor: pointer;
+}
+
+/* ===============================
+   Special: Last Date Field Styling
+=============================== */
+#lastDate {
+  color: var(--text-dark);
+}
+
+#lastDate:focus {
+  border-color: var(--deadline);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+}
+
+label[for="lastDate"] {
+  color: var(--deadline);
+  font-weight: 700;
 }
 
 /* ===============================
