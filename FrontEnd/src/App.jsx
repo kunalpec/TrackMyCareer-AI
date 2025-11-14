@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import HeaderComp from "./Components/Header";
 import Home from "./Components/Home";
 import About from "./Components/About";
@@ -11,33 +12,35 @@ import UserLogin from "./Components/userLogin";
 import { useAppContext } from "./Context/AppContext";
 
 function App() {
-  const { adminRef, applyuser } = useAppContext();
+  const { user, initializing } = useAppContext();
+
+  if (initializing) {
+    return (
+      <div className="app-loading">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  const isRecruiter = user?.role === "recruiter";
+  const isCandidate = user?.role === "candidate";
 
   return (
     <Router>
       <HeaderComp />
 
       <Routes>
-        {/* Home Page */}
         <Route path="/" element={<Home />} />
-
-        {/* Admin Section — show dashboard if logged in, else login */}
         <Route
           path="/providejobs"
-          element={adminRef ? <ProvideComp /> : <AdminLogin />}
+          element={isRecruiter ? <ProvideComp /> : <AdminLogin />}
         />
-
-        {/* User Section — show job application if logged in, else login */}
         <Route
           path="/applyjobs"
-          element={applyuser ? <ApplyComp /> : <UserLogin />}
+          element={isCandidate ? <ApplyComp /> : <UserLogin />}
         />
-
-        {/* Static Pages */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactInfoList />} />
-
-        {/* Signup */}
         <Route path="/admin-signup" element={<SignupPage />} />
       </Routes>
     </Router>

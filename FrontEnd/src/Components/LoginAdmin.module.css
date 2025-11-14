@@ -56,6 +56,29 @@
   background-color: #218838;
 }
 
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  margin-top: 16px;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #28a745;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #28a745;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
 .signupText {
   margin-top: 15px;
   font-size: 14px;

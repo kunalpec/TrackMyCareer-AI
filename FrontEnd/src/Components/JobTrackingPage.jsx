@@ -1,73 +1,70 @@
 import React from "react";
 import styles from "./JobTrackingPage.module.css";
+import { useAppContext } from "../Context/AppContext";
+import { Loader2 } from "lucide-react";
+
+const STATUS_LABELS = {
+  applied: "Applied",
+  shortlisted: "Shortlisted",
+  interview: "Interview",
+  offered: "Offered",
+  hired: "Hired",
+  rejected: "Rejected",
+};
+
+const statusColor = (status) => {
+  switch (status) {
+    case "applied":
+      return "#f59e0b";
+    case "shortlisted":
+      return "#10b981";
+    case "interview":
+      return "#3b82f6";
+    case "offered":
+      return "#6366f1";
+    case "hired":
+      return "#0ea5e9";
+    case "rejected":
+      return "#ef4444";
+    default:
+      return "#6b7280";
+  }
+};
 
 const JobTrackingPage = () => {
-  const jobs = [
-    {
-      id: 1,
-      role: "Frontend Developer",
-      company: "Google",
-      image: "https://cdn-icons-png.flaticon.com/512/300/300221.png",
-      status: "Shortlisted",
-    },
-    {
-      id: 2,
-      role: "Data Analyst",
-      company: "Microsoft",
-      image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-      status: "Interview",
-    },
-    {
-      id: 3,
-      role: "Backend Engineer",
-      company: "Amazon",
-      image: "https://cdn-icons-png.flaticon.com/512/732/732228.png",
-      status: "Applied",
-    },
-    {
-      id: 4,
-      role: "UI/UX Designer",
-      company: "Meta",
-      image: "https://cdn-icons-png.flaticon.com/512/5968/5968764.png",
-      status: "Rejected",
-    },
-  ];
-
-  const statusColor = (status) => {
-    switch (status) {
-      case "Applied":
-        return "#f0ad4e";
-      case "Shortlisted":
-        return "#5cb85c";
-      case "Interview":
-        return "#0275d8";
-      case "Rejected":
-        return "#d9534f";
-      default:
-        return "#6c757d";
-    }
-  };
+  const { applications, applicationsLoading } = useAppContext();
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Applied Job Status</h2>
-      <div className={styles.cardList}>
-        {jobs.map((job) => (
-          <div key={job.id} className={styles.jobCard}>
-            <img src={job.image} alt={job.company} className={styles.companyLogo} />
-            <div className={styles.jobInfo}>
-              <h3>{job.role}</h3>
-              <p>{job.company}</p>
+      <h2 className={styles.heading}>Application Timeline</h2>
+      {applicationsLoading ? (
+        <div className={styles.loader}>
+          <Loader2 size={28} className={styles.spinner} />
+          Loading your applications...
+        </div>
+      ) : applications.length ? (
+        <div className={styles.cardList}>
+          {applications.map((application) => (
+            <div key={application.id} className={styles.jobCard}>
+              <div className={styles.jobInfo}>
+                <h3>{application.job.title}</h3>
+                <p>{application.job.company || "Company Confidential"}</p>
+                <p className={styles.appliedDate}>
+                  Applied on {new Date(application.applied_at).toLocaleString()}
+                </p>
+              </div>
+              <span
+                className={styles.status}
+                style={{ backgroundColor: statusColor(application.status) }}
+              >
+                {STATUS_LABELS[application.status] || application.status}
+              </span>
             </div>
-            <span
-              className={styles.status}
-              style={{ backgroundColor: statusColor(job.status) }}
-            >
-              {job.status}
-            </span>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className={styles.emptyState}>You haven’t applied for any jobs yet.</p>
+      )}
     </div>
   );
 };

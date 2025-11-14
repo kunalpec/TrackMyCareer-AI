@@ -1,86 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginAdmin.module.css";
 import { useAppContext } from "../Context/AppContext";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
-  // ✅ Access values from global AppContext
-  const { AdminformData, setAdminFormData, setAdminRef } = useAppContext();
   const navigate = useNavigate();
+  const { login, logout } = useAppContext();
 
-  // ✅ Handle input changes
-  const handleChange = (e) => {
-    setAdminFormData({ ...AdminformData, [e.target.name]: e.target.value });
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validate fields
-    if (AdminformData.email && AdminformData.password && AdminformData.name) {
-      console.log("✅ Admin Login Successful:", AdminformData);
-
-      // Set admin as logged in
-      setAdminRef(true);
-
-      // Redirect to job provider page
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    try {
+      const user = await login({
+        email: formState.email,
+        password: formState.password,
+      });
+      if (user.role !== "recruiter") {
+        toast.error("Please use a recruiter account to access this area.");
+        await logout();
+        return;
+      }
       navigate("/providejobs");
-    } else {
-      alert("⚠️ Please fill all details before logging in.");
+    } catch {
+      // toast handled inside login
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Admin Login</h2>
+      <h2 className={styles.heading}>Recruiter Login</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* --- Name --- */}
-        <label className={styles.label}>Full Name</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          value={AdminformData.name}
-          onChange={handleChange}
-          required
-          className={styles.input}
-        />
-
-        {/* --- Email --- */}
         <label className={styles.label}>Email</label>
         <input
           type="email"
           name="email"
           placeholder="Enter your email"
-          value={AdminformData.email}
+          value={formState.email}
           onChange={handleChange}
           required
           className={styles.input}
         />
 
-        {/* --- Password --- */}
         <label className={styles.label}>Password</label>
         <input
           type="password"
           name="password"
           placeholder="Enter your password"
-          value={AdminformData.password}
+          value={formState.password}
           onChange={handleChange}
           required
           className={styles.input}
         />
 
-        {/* --- Submit Button --- */}
-        <button type="submit" className={styles.button}>
-          Login
+        <button type="submit" className={styles.button} disabled={submitting}>
+          {submitting ? "Signing in..." : "Login"}
         </button>
       </form>
 
-      {/* --- Signup Redirect --- */}
       <p className={styles.signupText}>
-        Don't have an account?{" "}
+        Need an account?{" "}
         <Link to="/admin-signup" className={styles.signupLink}>
           Sign Up
         </Link>

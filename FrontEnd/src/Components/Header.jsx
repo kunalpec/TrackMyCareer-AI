@@ -2,8 +2,15 @@ import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import { FaCircleUser } from "react-icons/fa6";
 import reactLogo from "../assets/reactlogo.png";
+import { useAppContext } from "../Context/AppContext";
 
 const HeaderComp = () => {
+  const { user, logout } = useAppContext();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.Logo}>
@@ -64,11 +71,28 @@ const HeaderComp = () => {
           </li>
         </ul>
 
-        <ul className={styles.userSection}>
-          <li className={styles.userIconContainer}>
+        <div className={styles.userSection}>
+          {user ? (
+            <>
+              <div className={styles.userInfo}>
+                <FaCircleUser className={styles.userIcon} />
+                <div>
+                  <p className={styles.userName}>
+                    {user.full_name || user.username}
+                  </p>
+                  <p className={styles.userRole}>
+                    {user.role === "recruiter" ? "Recruiter" : "Candidate"}
+                  </p>
+                </div>
+              </div>
+              <button className={styles.logoutButton} onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
             <FaCircleUser className={styles.userIcon} />
-          </li>
-        </ul>
+          )}
+        </div>
       </nav>
     </header>
   );

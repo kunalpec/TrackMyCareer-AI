@@ -59,12 +59,43 @@
 
 .userSection {
   display: flex;
-  list-style: none;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   margin-right: 10px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userName {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.userRole {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.logoutButton {
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+  color: var(--accent-color);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.logoutButton:hover {
+  background-color: rgba(56, 144, 60, 0.1);
 }
 
 /* --- NavLink Styling --- */

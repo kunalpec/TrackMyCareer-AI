@@ -3,11 +3,12 @@
 =============================== */
 .applyCard {
   display: flex;
-  align-items: flex-start;
-  width: 100%; /* full width of container */
+  align-items: center;
+  gap: 20px;
+  width: 100%;
   background: var(--bg-white);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 16px 20px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-light);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -15,139 +16,205 @@
 
 .applyCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.18);
 }
 
-/* Left Section - Company Logo */
+.expired {
+  opacity: 0.75;
+}
+
 .cardLogo {
   flex-shrink: 0;
-  margin-right: 20px;
+  margin-right: 4px;
 }
 
 .companyLogo {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-md);
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
   object-fit: cover;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: #f8fafc;
 }
 
-/* Middle Section - Job Info */
 .cardContent {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .jobRole {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-dark);
-  margin-bottom: 4px;
+  margin: 0;
+}
+
+.expiredBadge,
+.deadlineBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.expiredBadge {
+  background-color: rgba(234, 67, 53, 0.12);
+  color: #c62828;
+}
+
+.deadlineBadge {
+  background-color: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
 }
 
 .companyName {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .jobDetails {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 18px;
   font-size: 0.9rem;
   color: #475569;
-  margin-bottom: 8px;
 }
 
 .jobDetails p {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin: 0;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.metaRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .shortDesc {
-  color: #475569;
+  color: #1f2937;
   font-size: 0.95rem;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  margin: 0;
+  line-height: 1.45;
 }
 
-/* Expanded Section */
 .expandedSection {
-  margin-top: 12px;
-  background: #f1f5f9;
+  margin-top: 8px;
+  background: #eef2ff;
   border-radius: 8px;
-  padding: 16px;
-  color: #334155;
+  padding: 14px;
+  color: #1e293b;
   font-size: 0.95rem;
-  box-shadow: inset 0 -6px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.08);
 }
 
-.finalApplyBtn {
-  margin-top: 12px;
-  padding: 10px 18px;
-  background: #22c55e;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.buttonColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  border-radius: 10px;
+  padding: 8px 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.finalApplyBtn:hover {
-  background: #16a34a;
-}
-
-/* Right Section - Apply Button */
-.buttonRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  margin-left: 15px;
+.secondaryButton:hover {
+  background-color: rgba(37, 99, 235, 0.08);
 }
 
 .applyBtn {
   background: #2563eb;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .applyBtn:hover {
   background: #1d4ed8;
+  transform: translateY(-1px);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.applyBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+}
+
+@media (max-width: 900px) {
   .applyCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttonColumn {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .secondaryButton,
+  .applyBtn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .buttonColumn {
     flex-direction: column;
   }
 
-  .cardLogo {
-    margin-bottom: 15px;
-  }
-
-  .buttonRow {
+  .secondaryButton,
+  .applyBtn {
     width: 100%;
-    justify-content: flex-start;
-    margin-left: 0;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .companyLogo {
-    width: 60px;
-    height: 60px;
-  }
-
-  .applyBtn,
-  .finalApplyBtn {
-    padding: 8px 14px;
-    font-size: 0.9rem;
   }
 }

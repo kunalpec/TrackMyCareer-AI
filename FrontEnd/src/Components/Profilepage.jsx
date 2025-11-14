@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Profilepage.module.css";
 import {
   User,
@@ -12,7 +12,20 @@ import {
   Eye,
 } from "lucide-react";
 
+import { useAppContext } from "../Context/AppContext";
+import toast from "react-hot-toast";
+
+const DEFAULT_AVATAR = "https://cdn-icons-png.flaticon.com/512/1077/1077012.png";
+
 const ProfilePage = () => {
+  const {
+    user,
+    userProfile,
+    userProfileLoading,
+    uploadResume,
+    updateProfilePhoto,
+  } = useAppContext();
+
   const [profile, setProfile] = useState({
     name: "",
     email: "",
@@ -21,29 +34,77 @@ const ProfilePage = () => {
     bio: "",
     resume: "",
     resumeURL: "",
-    photo: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
   });
 
   const [message, setMessage] = useState("");
+  const [photoUploading, setPhotoUploading] = useState(false);
+  const [resumeUploading, setResumeUploading] = useState(false);
+
+  useEffect(() => {
+    setProfile((prev) => ({
+      ...prev,
+      name: user?.full_name || user?.username || "",
+      email: user?.email || "",
+    }));
+  }, [user]);
+
+  useEffect(() => {
+    setProfile((prev) => ({
+      ...prev,
+      resume: userProfile?.resume_name || "",
+      resumeURL: userProfile?.resume_url || "",
+    }));
+  }, [userProfile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const photoURL = URL.createObjectURL(file);
-      setProfile({ ...profile, photo: photoURL });
+  const handlePhotoChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+    if (file.type && !allowedTypes.includes(file.type)) {
+      toast.error("Please upload a JPG or PNG image.");
+      return;
+    }
+    if (file.size > 3 * 1024 * 1024) {
+      toast.error("Photo must be smaller than 3MB.");
+      return;
+    }
+    setPhotoUploading(true);
+    try {
+      await updateProfilePhoto(file);
+      toast.success("Photo updated successfully");
+    } catch (error) {
+      const message = error.response?.data?.detail || "Unable to update photo.";
+      toast.error(message);
+    } finally {
+      setPhotoUploading(false);
     }
   };
 
-  const handleResumeUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const resumeURL = URL.createObjectURL(file);
-      setProfile({ ...profile, resume: file.name, resumeURL });
+  const handleResumeUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.name.toLowerCase().endsWith(".pdf")) {
+      toast.error("Only PDF resumes are allowed.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Resume must be smaller than 5MB.");
+      return;
+    }
+    setResumeUploading(true);
+    try {
+      await uploadResume(file);
+      toast.success("Resume uploaded successfully");
+    } catch (error) {
+      const message = error.response?.data?.detail || "Unable to upload resume.";
+      toast.error(message);
+    } finally {
+      setResumeUploading(false);
     }
   };
 
@@ -52,22 +113,33 @@ const ProfilePage = () => {
     setTimeout(() => setMessage(""), 3000);
   };
 
+  const currentPhoto = userProfile?.photo_url || DEFAULT_AVATAR;
+  const currentResumeUrl = userProfile?.resume_url;
+  const currentResumeName = userProfile?.resume_name;
+  const isPdfResume = currentResumeName
+    ? currentResumeName.toLowerCase().endsWith(".pdf")
+    : false;
+  const isPhotoLoading = photoUploading;
+  const isResumeLoading = resumeUploading;
+
   return (
     <div className={styles.profileContainer1}>
       {/* --- Profile Form --- */}
       <div className={styles.profileContainer}>
         <div className={styles.profileHeader}>
           <div className={styles.photoArea}>
-            <img src={profile.photo} alt="Profile" className={styles.profilePic} />
+            <img src={currentPhoto} alt="Profile" className={styles.profilePic} />
             <label htmlFor="photoUpload" className={styles.editPhotoBtn}>
-              <Camera size={16} className="mr-1" /> Edit Photo
+              <Camera size={16} className="mr-1" />{" "}
+              {isPhotoLoading ? "Uploading..." : "Edit Photo"}
             </label>
             <input
               id="photoUpload"
               type="file"
-              accept="image/*"
+              accept="image/png,image/jpeg"
               onChange={handlePhotoChange}
               className={styles.hiddenInput}
+              disabled={isPhotoLoading || userProfileLoading}
             />
           </div>
 
@@ -145,17 +217,33 @@ const ProfilePage = () => {
           <input
             id="resumeUpload"
             type="file"
-            accept=".pdf,.doc,.docx"
+            accept=".pdf"
             onChange={handleResumeUpload}
             className={styles.hiddenInput}
+            disabled={isResumeLoading}
           />
-          {profile.resume ? (
-            <p className={styles.resumeName}>
-              <FileText size={16} /> {profile.resume}
-            </p>
-          ) : (
-            <p className={styles.emptyResume}>No resume uploaded yet</p>
-          )}
+          <div className={styles.resumeStatusRow}>
+            {isResumeLoading ? (
+              <p className={styles.emptyResume}>Uploading resume...</p>
+            ) : profile.resume ? (
+              <p className={styles.resumeName}>
+                <FileText size={16} /> {profile.resume}
+              </p>
+            ) : (
+              <p className={styles.emptyResume}>No resume uploaded yet</p>
+            )}
+            {profile.resumeURL && (
+              <a
+                href={profile.resumeURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.viewResumeLink}
+              >
+                View
+              </a>
+            )}
+          </div>
+
         </div>
 
         <div className={styles.saveSection}>
@@ -171,17 +259,17 @@ const ProfilePage = () => {
         <h3 className={styles.resumeTitle}>
           <Eye size={18} /> Resume Preview
         </h3>
-        {profile.resumeURL ? (
-          profile.resume.endsWith(".pdf") ? (
+        {currentResumeUrl ? (
+          isPdfResume ? (
             <iframe
-              src={profile.resumeURL}
+              src={currentResumeUrl}
               title="Resume Preview"
               className={styles.resumeFrame}
             />
           ) : (
             <a
-              href={profile.resumeURL}
-              download={profile.resume}
+              href={currentResumeUrl}
+              download={currentResumeName || "resume"}
               className={styles.downloadLink}
             >
               Click here to download and view your resume

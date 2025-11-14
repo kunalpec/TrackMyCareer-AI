@@ -1,16 +1,15 @@
 .container {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 0 auto;
   padding: 20px;
   font-family: "Poppins", sans-serif;
 }
 
 .heading {
-  text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 25px;
+  color: #0f172a;
+  margin-bottom: 20px;
 }
 
 .cardList {
@@ -19,55 +18,98 @@
   gap: 15px;
 }
 
-/* --- Horizontal Card --- */
 .jobCard {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
-  padding: 15px 20px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  padding: 18px 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .jobCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(30, 64, 175, 0.12);
 }
 
-/* Company Logo */
-.companyLogo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  margin-right: 15px;
-}
-
-/* Job Info */
 .jobInfo {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .jobInfo h3 {
   font-size: 1.1rem;
-  color: #202124;
-  margin-bottom: 5px;
+  color: #111827;
+  margin: 0;
 }
 
 .jobInfo p {
-  color: #5f6368;
+  color: #4b5563;
   font-size: 0.95rem;
+  margin: 0;
 }
 
-/* Status Badge */
+.appliedDate {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
 .status {
   color: white;
-  font-weight: 500;
-  font-size: 0.9rem;
-  padding: 8px 14px;
-  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: 999px;
   text-transform: capitalize;
-  min-width: 100px;
+  min-width: 110px;
   text-align: center;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #475569;
+  padding: 40px 0;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.emptyState {
+  background: #f8fafc;
+  border: 1px dashed #cbd5f5;
+  border-radius: 14px;
+  padding: 40px;
+  text-align: center;
+  color: #475569;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .jobCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .status {
+    align-self: flex-start;
+  }
 }
